@@ -1,136 +1,153 @@
-Retail Insights GenAI Assistant
+# 🛍️ Retail Insights GenAI Assistant
 
-Multi-agent GenAI assistant for retail sales analytics using LangGraph, DuckDB, and LLMs.
+**Multi-agent GenAI assistant for retail sales analytics using LangGraph, DuckDB, and LLMs**
 
-Overview
+---
 
-This project implements a conversational analytics and summarization assistant for retail sales datasets.
-It supports:
+## 📌 Overview
 
-Executive data summarization
+Retail Insights GenAI Assistant is a conversational analytics and executive-summarization system for retail sales datasets.
 
-Natural-language business queries
+It enables business users to:
 
-Multi-agent reasoning workflow
+- Generate executive summaries from raw CSV data  
+- Ask natural-language business questions  
+- Automatically translate questions → SQL → insights  
+- Analyze datasets with unknown schemas  
+- Scale to large analytics architectures  
 
-Dynamic CSV schema handling
+---
 
-Scalable architecture design
+## ✨ Key Features
 
-Features
-Summarization Mode
+### 📊 Executive Summarization
+Automatically generates business summaries from dataset statistics.
 
-Generates executive summary from dataset statistics.
+**Example output**
 
-Example output:
+> Our company's overall performance has shown a steady growth trend, with a total of 128,975 records analyzed.  
+> Key highlights include:
+>
+> • **Growth Trends:** The total sum of Amount has increased to $78,592,678.3, indicating growth in sales revenue.  
+> • **Top Performers:** The most frequent categories include specific Order_IDs and a high occurrence of 'Shipped' status (77,804 times).  
+> • **Bottom Performers:** The Sales_Channel category shows very low frequency for 'Non-Amazon'.  
+> • **Risks & Opportunities:** A high number of cancelled orders (18,332) suggests fulfillment or customer satisfaction issues, while shipped orders indicate strong performance.
+---
 
-“Overall sales are concentrated in a few high-value segments, with strong contribution from select regions and product categories…”
+### 💬 Conversational Business Q&A
+Ask natural language questions such as:
 
-Conversational Q&A Mode
+- Which category sells the most?  
+- Total revenue in April 2022?  
+- Top region by sales?  
+- Which size performs best?  
 
-Users can ask business questions such as:
+System pipeline:
 
-Which category sells the most?
+---
 
-Total revenue in April 2022?
+## 🧠 Multi-Agent Architecture
 
-Top region by sales?
+### Q&A Workflow (LangGraph)
 
-System converts natural language → SQL → insight.
+<img width="186" height="236" alt="QA_workflow" src="https://github.com/user-attachments/assets/42118fa2-d3eb-49a2-9073-6ea5cdf88806" />
 
-Architecture
 
-Multi-agent LangGraph workflow:
+---
 
-User Question
-→ SQL Agent
-→ Validation Agent
-→ Execution Agent
-→ Insight Agent
+### Summarization Workflow
 
-Summarization pipeline:
+<img width="166" height="133" alt="Summary_workflow" src="https://github.com/user-attachments/assets/3c98f7b3-d05a-443e-9460-df3694bd4130" />
 
-CSV
-→ Metrics Engine
-→ LLM Summary Agent
 
-Tech Stack
+---
 
-Python
+## 🖥️ Application Screenshots
 
-LangGraph
+### 🏠 Homepage (File Upload & Mode Selection)
 
-LangChain
+<img width="900" alt="Homepage" src="https://github.com/user-attachments/assets/c3d46512-8c19-4e87-a998-2e8f68aa422c" />
 
-DuckDB
 
-Groq LLM (Llama-3)
+---
 
-Streamlit
+### 📊 Executive Summary Output
 
-Installation
-git clone <your-repo-url>
+<img width="900"  alt="Summary" src="https://github.com/user-attachments/assets/b1c5d23a-3b0b-4e3c-a3d0-ba965d5eebf3" />
+
+ 
+---
+
+### 💬 Conversational Q&A
+
+<img width="900" alt="QA" src="https://github.com/user-attachments/assets/2c5d0057-a008-4d9d-83e4-7535d071c761" />
+
+
+## 🏗️ Tech Stack
+
+- Python  
+- LangGraph  
+- LangChain  
+- DuckDB  
+- Groq LLM (Llama-3)  
+- Streamlit  
+
+---
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/abhisam135/retail-insights-assistant.git
 cd retail-insights-assistant
 
 python -m venv venv
-venv\Scripts\activate  # Windows
+venv\Scripts\activate   # Windows
 
 pip install -r requirements.txt
 
-Create .env:
+Create .env file:
+GROQ_API_KEY=your_key_here
 
-GROQ_API_KEY=your_key
-Run CLI
+Run CLI Mode
 python main.py
 
 Choose mode:
-
 summary
 qa
-Run UI
+
+Run Streamlit UI
 streamlit run streamlit_app.py
+```
+Upload CSV → Select mode → Generate insights.
 
-Upload CSV → choose mode.
+## 🤖 Agents Implemented
 
-Multi-Agent Design
+* SQL Generation Agent → Converts natural language to SQL
+* SQL Validation Agent → Ensures safe & valid SQL
+* SQL Execution Agent → Runs query in DuckDB
+* Insight Agent → Converts results to business insight
+* Summary Agent → Generates executive summary
 
-Agents implemented:
+## 📈 Scalability Design (100GB+ Data)
 
-SQL Generation Agent
+Proposed production architecture:
+* Data lake (S3 / ADLS)
+* Parquet partitioning
+* DuckDB / Spark analytics
+* Warehouse (Snowflake / BigQuery)
+* RAG for reports
+* LLM orchestration with caching
 
-SQL Validation Agent
+## ❓ Example Questions
+* Which size sells highest?
+* Total sales in March 2022
+* Top 5 categories
+* Revenue by region
 
-SQL Execution Agent
+👨‍💻 Author
 
-Insight Generation Agent
+Abhishek
 
-Summary Agent
+  
 
-Scalability Design (100GB+)
 
-Proposed architecture:
-
-Data lake (S3 / ADLS)
-
-Parquet partitioning
-
-DuckDB / Spark analytics
-
-Warehouse layer (Snowflake/BigQuery)
-
-RAG for reports
-
-LLM orchestration with caching
-
-Example Queries
-
-Which size sells highest?
-
-Total sales in March 2022
-
-Top 5 categories
-
-Author
-
-Your Name
-GenAI Assignment — Blend360
